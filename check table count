@@ -1,0 +1,3 @@
+
+
+sudo mysql -e 'select count(1) from test.temp_data_review_171125';
