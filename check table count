@@ -1,3 +1,5 @@
 
-
 sudo mysql -e 'select count(1) from test.temp_data_review_171125';
+
+
+Note:  sudo mysqldump --set-gtid-purged=OFF test temp_data_review_171125 > temp_data_review_171125.sql
