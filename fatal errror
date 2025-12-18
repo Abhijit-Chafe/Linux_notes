@@ -1,0 +1,1 @@
+sudo cat /var/log/php-fpm/www-error.log | grep -i -A 5 -B 5 fatal
