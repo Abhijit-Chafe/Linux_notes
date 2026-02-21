@@ -1,8 +1,8 @@
 Abhi 🤙: mistakes ------ adding extra resolve.conf entries rather than 8.8.8.8
                           date in system was wrong.
 
-         Note: centos has EOL use yum repo from wiki
-Abhi 🤙: search for file repo in wiki to enable mirror error (EOL) 
+         Note: centos has EOL use yum repo from wiki (enable_centos7_repo.sh)
+Abhi 🤙: search for file "repo" in wiki to enable mirror error (EOL) 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🤙🤙 🤙🤙🤙🤙🤙🤙🤙: Hardening 🤙🤙🤙🤙🤙🤙🤙🤙🤙🤙🤙
