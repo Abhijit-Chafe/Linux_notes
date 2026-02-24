@@ -1,0 +1,40 @@
+dr backup mysql
+
+1) check source server in lb or not ---->
+
+curl http://192.168.13.102:920/lb_module-cli?ip=16.164 | grep 192.168.16.164
+
+in cd /opt  see for  (MySQLMaster_status.sh  or mysql_slave_status)
+
+2) check vsftpd service running reponsible for data transfer
+
+sudo service vsftpd status
+
+3) check lag of source server if lag is 0 then only proceed
+
+4) check processlist of source server
+
+5) stop mysqld service
+
+###mysql -Bse "flush tables;" && mysql -Bse "stop slave;" && mysql -Bse "flush tables;" && mysql -Bse "flush tables;" && mysql -Bse 'show slave status\G' > /tmp/slave_status_230725.txt && mysql -Bse "flush tables;" && systemctl stop mysqld && systemctl status mysqld
+
+6) change both source and destination to similar permisions (web_backup)
+
+7) got to destination server in req directory and hit
+
+lftp web_backup@192.168.43.110
+
+lftp web_backup@192.168.43.110:~> pwd
+ftp://web_backup@192.168.43.110
+lftp web_backup@192.168.43.110:~> lpwd
+/GENIO_DR_BACKUP/192.168.43.110
+lftp web_backup@192.168.43.110:~> cd /var/lib/SQL/
+lftp web_backup@192.168.43.110:/var/lib/SQL> pwd
+ftp://web_backup@192.168.43.110/%2Fvar/lib/SQL
+lftp web_backup@192.168.43.110:/var/lib/SQL> lpwd
+/GENIO_DR_BACKUP/192.168.43.110
+lftp web_backup@192.168.43.110:/var/lib/SQL> ls
+
+lftp web_backup@192.168.43.110:/var/lib/SQL> mirror -c
+
+after data copy change permision back to mysql then start mysqld service and check lag
