@@ -1,0 +1,10 @@
+**************** Request for One-Time Backup of Tables on ECS Server **************
+Server ip :- 192.168.41.39
+Database:- sms_email_sending
+
+######## steps ###########
+got to server ip 
+need to take dump (backup of tables)
+for i in cat one_time_backup; do echo $i; sudo mysqldump sms_email_sending $i | gzip -fv > $i.sql.gz; done
+check file size 
+Reply the mail including the path 
