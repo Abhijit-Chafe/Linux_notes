@@ -1,0 +1,10 @@
+
+********** check database ************
+
+SELECT TABLE_SCHEMA, TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME = 'tbl_user_historical_data';
+
+
+********** check table size ************
+
+SELECT table_name AS "tbl_company_consolidated_autosuggest",ROUND(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"  
+FROM information_schema.TABLES WHERE table_schema = "db_company" and table_name='tbl_company_consolidated_autosuggest' ORDER BY "Size in MB";
