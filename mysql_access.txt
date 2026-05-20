@@ -28,4 +28,21 @@ update mysql.user set password='*2E380A01B633A871ACB520852B5777731DDD0A9C' WHERE
 
 
 
+select user,host from mysql.user where user like 'suprajits';
+select user,host from mysql.user where host like '%172.29.182.239%';
+
+CREATE USER 'suprajits'@'172.29.182.239' IDENTIFIED WITH 'mysql_native_password' AS '*2F6C3EB1F120E84340BC608844B76C14D49ECAC0';
+CREATE USER 'suprajits'@'10.10.55.229' IDENTIFIED WITH 'mysql_native_password' AS '*2F6C3EB1F120E84340BC608844B76C14D49ECAC0';
+
+GRANT SELECT ON . TO 'suprajits'@'172.29.182.239';
+GRANT SELECT ON . TO 'suprajits'@'10.10.55.229';
+
+
+flush privileges;
+
+show grants for suprajits@172.29.182.239;
+show grants for suprajits@10.10.55.229;
+
+
+
 
