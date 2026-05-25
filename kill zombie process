@@ -1,0 +1,3 @@
+Kill zombie process
+
+sudo ps -A -o stat,pid,ppid | grep -e '[zZ]' | awk '{print $3}' | sudo xargs kill -9
