@@ -1,0 +1,15 @@
+LOCKFILE="/tmp/process_push_date_for_ai_call.lock"
+
+touch
+
+if [ -e "$LOCKFILE" ];
+then
+        echo "Process is still running, exiting current process..."
+        exit 0
+else
+        echo "Last process completed, running the current process"
+        touch "$LOCKFILE"
+        /usr/bin/curl http://192.168.35.217:81/cron/process_push_date_for_ai_call.php?trace=1 >  /var/log/daily_log/process_push_date_for_ai_call.log 2>&1
+        rm -fv $LOCKFILE
+        echo "Process completed , removed lock file"
+fi
