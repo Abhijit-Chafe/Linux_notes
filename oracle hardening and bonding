@@ -1,0 +1,59 @@
+###########################################################################
+                                 HARDENING
+###########################################################################
+
+dmidecode -t1
+ip r l
+ping www.google.com
+cat /etc/redhat-release
+yum install vim net-tools wget sysstat device-mapper-multipath* vsftpd lftp psmisc yum-utils
+wget http://172.29.0.123/download/oracle_linux_configure_hardening.sh
+chmod +x oracle_linux_configure_hardening.sh
+ls -lrth
+./oracle_linux_configure_hardening.sh
+yum update openssh-server
+yum update -y
+service NetworkManager status
+service NetworkManager restart
+service NetworkManager status
+reboot
+
+
+
+###########################################################################
+                                 BONDING
+###########################################################################
+
+
+ifconfig 
+ethtool ens2f0
+ethtool ens2f1
+ethtool ens2f2
+ethtool ens2f3
+wget http://172.29.0.123/download/nic_bonding_oracle_9.sh
+chmod +x nic_bonding_oracle_9.sh
+ls -lrth
+./nic_bonding_oracle_9.sh
+
+Copy paste the 1st Nic which is showing Link detected yes and having IP of the server
+Copy paste the 2nd Nic which is showing Link detected yes
+
+Press Enter 
+
+then select the server IP address
+
+
+cat /proc/net/bonding/bond0
+
+Checking Failover 
+
+nmcli device status
+
+sudo nmcli con down bond0-ens2f0-port1
+cat /proc/net/bonding/bond0
+sudo nmcli con up bond0-ens2f0-port1
+cat /proc/net/bonding/bond0
+sudo nmcli con down bond0-ens2f1-port2
+cat /proc/net/bonding/bond0
+sudo nmcli con up bond0-ens2f1-port2
+dmidecode -t1
